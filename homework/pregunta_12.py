@@ -15,3 +15,22 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    diccionario = {}
+    numeros = []
+    with open("files/input/data.csv", "r") as archivo:
+        for fila in archivo:
+            columna = fila.split()
+            valores = columna[4].split(",")
+            if columna[0] not in diccionario:
+                diccionario[columna[0]] = 0
+            for valor in valores:
+                _, numero = valor.split(":")
+                numeros.append(int(numero))
+                diccionario[columna[0]] += int(numero)
+
+    diccionario = dict(sorted(diccionario.items()))
+    return diccionario
+
+
+if __name__ == "__main__":
+    print(pregunta_12())

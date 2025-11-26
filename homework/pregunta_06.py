@@ -26,3 +26,26 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    diccionario={}
+    result=[]
+    with open('files/input/data.csv', "r") as archivo:
+        for linea in archivo:
+            columnas=linea.split()
+            pares=columnas[4].split(",")
+            for par in pares:
+                letra,numero=par.split(':')
+                numero=int(numero)
+                if letra not in diccionario:
+                    diccionario[letra]=[]
+                diccionario[letra].append(numero)
+    diccionario=dict(sorted(diccionario.items()))
+
+    for letra, valor in diccionario.items():
+        result.append((letra,min(valor), max(valor)))
+
+    return result
+
+if __name__=="__main__":
+    print(pregunta_06())
+
+        

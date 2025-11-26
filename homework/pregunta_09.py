@@ -24,3 +24,22 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+
+    diccionario = {}
+    result = []
+    with open("files/input/data.csv", "r") as archivo:
+        for linea in archivo:
+            columnas = linea.split()
+            pares = columnas[4].split(",")
+            for par in pares:
+                letra, numero = par.split(":")
+                numero = int(numero)
+                if letra not in diccionario:
+                    diccionario[letra] = 0
+                diccionario[letra] += 1
+    diccionario = dict(sorted(diccionario.items()))
+    return diccionario
+
+
+if __name__ == "__main__":
+    print(pregunta_09())

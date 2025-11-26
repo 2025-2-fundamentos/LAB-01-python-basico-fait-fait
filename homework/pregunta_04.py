@@ -5,7 +5,6 @@ solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
 
-
 def pregunta_04():
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la
@@ -26,3 +25,26 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    resul=[]
+    meses=[]
+    unico_mes=[]
+    with open('files/input/data.csv', "r") as archivo:
+        for linea in archivo:
+            columnas=linea.split()
+            fechas=columnas[2]
+            _, mes, _ = fechas.split('-')
+            meses.append(mes)
+            if mes not in unico_mes:
+                unico_mes.append(mes)
+            else:
+                pass
+    
+    unico_mes.sort()
+    for mes in unico_mes:
+        n_veces=meses.count(mes)
+        resul.append((mes,n_veces))
+
+    return resul
+
+if __name__=="__main__":
+    print(pregunta_04())

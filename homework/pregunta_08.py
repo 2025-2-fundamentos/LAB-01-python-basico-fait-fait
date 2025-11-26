@@ -27,3 +27,23 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    dic = {}
+    result = []
+    with open("files/input/data.csv", "r") as archivo:
+        for linea in archivo:
+            columnas = linea.split()
+            numero = int(columnas[1])
+            letras = columnas[0]
+            if numero not in dic:
+                dic[numero] = []
+            if letras not in dic[numero]:
+                dic[numero].append(letras)
+    dic = dict(sorted(dic.items()))
+    for numero, valor in dic.items():
+        valor.sort(reverse=False)
+        result.append((numero, valor))
+    return result
+
+
+if __name__ == "__main__":
+    print(pregunta_08())
